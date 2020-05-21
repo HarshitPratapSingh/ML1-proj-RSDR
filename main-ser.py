@@ -1,4 +1,4 @@
-from PIL import ImageTk, Image
+from PIL import Image
 import numpy
 from tensorflow import keras
 from flask import Flask, request, url_for, redirect, render_template
@@ -62,19 +62,19 @@ def index():
       return render_template("index.html")
 
 
-@app.route("/upload", methods=['POST','GET'])
+@app.route("/uploader", methods=['POST','GET'])
 def upload():
       if request.method == 'POST':
             f = request.files['photo']
             f.save(pathf+'/static/temp/'+secure_filename(f.filename))
 
             labeltxt = classify(pathf+'/static/temp/'+f.filename)
-            return render_template('result.html',pic_name=f.filename, labeltxthtm = labeltxt)
+            return render_template('result.html',pic_name="/static/temp/"+f.filename, labeltxthtm = labeltxt)
 
 @app.route("/upload/<file_pho>")
 def direct_classify(file_pho):
             labeltxt = classify(pathf+'/static/images/pre-im/'+file_pho)
-            return render_template('result.html',pic_name=file_pho, labeltxthtm = labeltxt)
+            return render_template('result.html',pic_name="/static/images/pre-im/"+file_pho, labeltxthtm = labeltxt)
 
 
 def classify(file_path):
