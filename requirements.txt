@@ -2,5 +2,5 @@ Flask==1.1.1
 gunicorn
 Keras==2.3.1
 Pillow==7.0.0
-tensorflow-cpu==2.1.0
+tensorflow-cpu==2.3.1
 Werkzeug==1.0.0
